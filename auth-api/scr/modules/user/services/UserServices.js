@@ -67,10 +67,10 @@ class UserService {
                 status: err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR,
                 message: err.message,
         }
-        
+    }
     }
 
-    validateAccessTokenData(email, password); {
+    validateAccessTokenData(email, password) {
        if (!email || !password) {
         throw new UserException(
             httpStatus.UNAUTHORIZED,
@@ -78,13 +78,12 @@ class UserService {
         );
        } 
     }
-    // Adicionar o Async que esta ocorrendo erro de sintaxe.
-    validatePassword(password, hashPassword); {
+    
+    async validatePassword(password, hashPassword) {
         if (!await bcrypt.compare(password, hashPassword)) {
             throw new UserException(httpStatus.UNAUTHORIZED, "Password doesn't match.");
         }
     }
-}
 
 }
 
